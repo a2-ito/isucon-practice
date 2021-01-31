@@ -16,6 +16,5 @@ jobs:
         run: |
           pwd; ls
           mvn --batch-mode --update-snapshots verify
-        working-directory: ./isucon4/qualifier/webapp/java-spring-boot
 
 
