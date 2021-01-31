@@ -14,6 +14,7 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: |
+          cat /etc/os-release
           cd isucon4-qualifier/webapp/java-spring-boot
           sudo apt install -y openjfx
           mvn --batch-mode --update-snapshots verify
