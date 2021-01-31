@@ -13,5 +13,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: cd isucon4/qualifier/webapp/java-spring-boot/ && mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify
+        working-directory: ./isucon4/qualifier/webapp/java-spring-boot
+
 
