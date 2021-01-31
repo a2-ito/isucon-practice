@@ -14,7 +14,7 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: |
-          java --version
+          ls -ltr /usr/lib/jvm/java-8-openjdk-amd64/lib/
           #cd isucon4-qualifier/webapp/java-spring-boot
           #sudo apt install -y openjfx=8u161-b12-1ubuntu2 libopenjfx-jni=8u161-b12-1ubuntu2 libopenjfx-java=8u161-b12-1ubuntu2
           #sudo apt-mark hold openjfx libopenjfx-jni libopenjfx-java
