@@ -1,7 +1,7 @@
 # Java
 
-- ```-Xms``` ƒq[ƒv‰Šú—e—Ê
-- ```-Xmx``` ƒq[ƒvÅ‘å—e—Ê
+- ```-Xms``` ãƒ’ãƒ¼ãƒ—åˆæœŸå®¹é‡
+- ```-Xmx``` ãƒ’ãƒ¼ãƒ—æœ€å¤§å®¹é‡
 
-Ql
+å‚è€ƒ
 https://qiita.com/KentOhwada_AlibabaCloudJapan/items/878000dbe3b5af0e95c2
