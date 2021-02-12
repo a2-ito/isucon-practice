@@ -9,6 +9,8 @@ import (
 	"github.com/martini-contrib/sessions"
 	"net/http"
 	"strconv"
+	"os"
+	"log"
 )
 
 var db *sql.DB
@@ -16,6 +18,16 @@ var (
 	UserLockThreshold int
 	IPBanThreshold    int
 )
+
+func initProfiler() {
+	if err := profiler.Start(profiler.Config{
+		Service:        "isucon-go",
+		ServiceVersion: "1.0.0",
+		ProjectID:      os.Getenv("GOOGLE_CLOUD_PROJECT"),
+	}); err != nil {
+		log.Fatal(err)
+	}
+}
 
 func init() {
 	dsn := fmt.Sprintf(
@@ -46,6 +58,8 @@ func init() {
 }
 
 func main() {
+	initProfiler()
+
 	m := martini.Classic()
 
 	store := sessions.NewCookieStore([]byte("secret-isucon"))

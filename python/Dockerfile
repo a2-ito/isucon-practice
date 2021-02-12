@@ -9,6 +9,6 @@ RUN apt-get update && \
 
 RUN pip3 install --upgrade pip
 #RUN pip3 install flask gunicorn PyMySQL
-RUN pip3 install flask gunicorn mysqlclient werkzeug==0.16.0
+RUN pip3 install flask gunicorn mysqlclient werkzeug==0.16.0 google-cloud-profiler
 
 CMD ["python3", "/usr/src/app.py"]

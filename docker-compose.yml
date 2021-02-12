@@ -2,12 +2,26 @@ version: '3.8'
 
 services:
 
+  isucon-web:
+    image: nginx
+    ports:
+      - 10080:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/public:/usr/share/nginx/html/public
+
   isucon-go:
     build:
       context: ./go
     ports:
       - "8080:8080"
     restart: always
+    environment:
+      - GOOGLE_CLOUD_PROJECT
+      - GOOGLE_APPLICATION_CREDENTIALS=/gcp-sa-key.json
+    volumes:
+      - ./gcp-sa-key.json:/gcp-sa-key.json
 
   isucon-java:
     build:
@@ -15,6 +29,12 @@ services:
     ports:
       - "8081:8080"
     restart: always
+    environment:
+      - GOOGLE_CLOUD_PROJECT
+      - GOOGLE_APPLICATION_CREDENTIALS=/gcp-sa-key.json
+      - SERVICE_NAME=isucon-java
+    volumes:
+      - ./gcp-sa-key.json:/gcp-sa-key.json
 
   isucon-python:
     build:
@@ -22,6 +42,11 @@ services:
     ports:
       - "8082:5000"
     restart: always
+    environment:
+      - GOOGLE_CLOUD_PROJECT
+      - GOOGLE_APPLICATION_CREDENTIALS=/gcp-sa-key.json
+    volumes:
+      - ./gcp-sa-key.json:/gcp-sa-key.json
 
   isucon-mysql:
     image: mysql:5.6.37

@@ -10,10 +10,22 @@ from werkzeug.contrib.fixers import ProxyFix
 import os, hashlib
 from datetime import date
 
+import googlecloudprofiler
+
 config = {}
 app = Flask(__name__, static_url_path='')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.secret_key = os.environ.get('ISU4_SESSION_SECRET', 'shirokane')
+
+def init_profiler():
+    try:
+        googlecloudprofiler.start(
+            service='isucon-python-docker',
+            service_version='1.0.0',
+            verbose=3,
+        )
+    except (ValueError, NotImplementedError) as exc:
+        print(exc)  # Handle errors herea
 
 def load_config():
     global config
@@ -214,6 +226,8 @@ def report():
     return response
 
 if __name__ == '__main__':
+    init_profiler()
+
     load_config()
     port = int(os.environ.get('PORT', '5000'))
     app.run(debug=1, host='0.0.0.0', port=port)
